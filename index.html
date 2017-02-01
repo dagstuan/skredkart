@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Load Leaflet from CDN-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet-src.js"></script>
+
+    <!-- Load Esri Leaflet locally, after cloning this repository -->
+    <script src="https://unpkg.com/esri-leaflet@2.0.7"></script>
+
+    <style>
+      html, body, #map {
+        margin:0; padding:0;  width : 100%; height : 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map = L.map('map').setView([63.432318, 10.420338], 7);
+      L.esri.basemapLayer('Topographic').addTo(map);
+
+      var parks = L.esri.dynamicMapLayer({
+        url: "http://services.geodataonline.no/arcgis/rest/services/Geocache_UTM33_EUREF89/GeocacheHelning/MapServer/",
+        f: 'image',
+        format: 'png',
+        opacity: 0.5
+      }).addTo(map);
+    </script>
+  </body>
+</html>
